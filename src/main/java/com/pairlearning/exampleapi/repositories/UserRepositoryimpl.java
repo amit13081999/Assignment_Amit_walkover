@@ -85,10 +85,8 @@ public class UserRepositoryimpl implements UserRepository{
 
     @Override
     public void removeUser(String email, String password) throws EtAuthException {
-        int count = jdbcTemplate.update(SQL_DELETE, new Object[]{email, password});
-        if(count == 0) {
-           throw new EtAuthException("user does not exist");
-        }
+        jdbcTemplate.update(SQL_DELETE, new Object[]{email, password});
+
     }
 
     private RowMapper<User> userRowMapper = ((rs, rowNum) -> {

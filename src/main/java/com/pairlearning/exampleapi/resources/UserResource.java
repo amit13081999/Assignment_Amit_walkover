@@ -55,10 +55,8 @@ public class UserResource {
         return new ResponseEntity<>(users, HttpStatus.OK);
      }
 
-     @DeleteMapping("/delete")
-     public ResponseEntity<Map<String, Boolean>> deleteUser(HttpServletRequest request) {
-         String email = (String) request.getAttribute("email");
-         String password = (String) request.getAttribute("password");
+     @DeleteMapping("/delete/{email}/{password}")
+     public ResponseEntity<Map<String, Boolean>> deleteUser(@PathVariable("email") String email,@PathVariable("password") String password) {
          userService.deleteUser(email, password);
          Map<String, Boolean> map = new HashMap<>();
          map.put("success", true);

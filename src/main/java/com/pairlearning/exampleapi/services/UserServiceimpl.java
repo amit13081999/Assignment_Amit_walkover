@@ -51,6 +51,7 @@ public class UserServiceimpl implements UserService{
 
     @Override
     public void deleteUser(String email, String password) throws EtAuthException {
+        User user = userRepository.findByEmailAndPassword(email, password);
         userRepository.removeUser(email, password);
 
     }
